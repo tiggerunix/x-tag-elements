@@ -29,7 +29,7 @@
 		toggle.call(this);
 		flipState.call(this);
 	});
-
+	
 	xtag.register('x-toggler', {
 		onCreate: function(){
 			this.setAttribute('tabindex', 0);

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>xtag-dropdown</title>
+
+    <link rel="stylesheet" type="text/css" href="dropdown.css"/>
+    <link rel="stylesheet" type="text/css" href="../../demo/css/reset.css"/>
+
+    <script type="text/javascript" src="../lib/x-tag/x-tag.js"></script>
+	<script type="text/javascript" src="../toggler/toggler.js"></script>   
+    <script type="text/javascript" src="dropdown.js"></script>      
+</head>
+
+<body>
+<x-dropdown id="x-dropdown">
+	<x-toggler data-targetset="foo bar">Menu</x-toggler>
+    <menu id="foo">
+		<li><a>1st level - 1</a></li>
+		<li><a>1st level - 2</a></li>
+		<li><a>1st level - 3</a></li>
+		<li><a>1st level - 4</a></li>
+		<li><a>1st level - 5</a></li>
+		<li><a>1st level - 6</a></li>
+		<li><a>1st level - 7</a></li>
+		<li>
+			<x-toggler>1st level - 8</x-toggler>
+			<menu>
+				<li><a>2nd level - 1</a></li>
+				<li>
+					<x-toggler>2nd level - 2</x-toggler>
+					<menu>
+						<li><a>3rd level - 1</a></li>
+						<li><a>3rd level - 2</a></li>
+						<li><a>3rd level - 3</a></li>
+						<li><a>3rd level - 4</a></li>
+					</menu>
+				</li>
+				<li><a>2nd level - 3</a></li>
+				<li><a>2nd level - 4</a></li>
+			</menu>
+		</li>
+	</menu>
+</x-dropdown>
+</body>
+
+</html>
