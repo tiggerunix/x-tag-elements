@@ -2,13 +2,13 @@
 xtag.register('x-tabbox', {
 	events: {
 		'tap:delegate(x-tab)': function(event){
-			this.xtag.selectTab();
+			this.selectTab();
 		},
 		'keydown:delegate(x-tab)': function(event){
 			switch(event.keyCode) {
-				case 13: this.xtag.selectTab(); break;
-				case 37: this.parentNode.xtag.previousTab(); break;
-				case 39: this.parentNode.xtag.nextTab(); break;
+				case 13: this.selectTab(); break;
+				case 37: this.parentNode.previousTab(); break;
+				case 39: this.parentNode.nextTab(); break;
 			}
 		}
 	}
@@ -18,18 +18,18 @@ xtag.register('x-tabs', {
 	methods: {
 		getSelectedIndex: function(){
 			var tabs = xtag.query(this, 'x-tab');
-			return tabs.indexOf(this.xtag.getSelectedTab());
+			return tabs.indexOf(this.getSelectedTab());
 		},
 		getSelectedTab: function(){
 			return xtag.query(this, 'x-tab[selected="true"]')[0];
 		},
 		nextTab: function(){
-			var tab = this.xtag.getSelectedTab();
-			if (tab) (tab.nextElementSibling || this.firstElementChild).xtag.selectTab();
+			var tab = this.getSelectedTab();
+			if (tab) (tab.nextElementSibling || this.firstElementChild).selectTab();
 		},
 		previousTab: function(){
-			var tab = this.xtag.getSelectedTab();
-			if (tab) (tab.previousElementSibling || this.lastElementChild).xtag.selectTab();
+			var tab = this.getSelectedTab();
+			if (tab) (tab.previousElementSibling || this.lastElementChild).selectTab();
 		}
 	}
 });

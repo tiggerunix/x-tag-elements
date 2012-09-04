@@ -12,13 +12,13 @@
 					'">&#215;</a>';
 			}
 
-			this.xtag.show();
+			this.show();
 		},
 
 		events: {
 			'click:touch': function(event) {
 				event.preventDefault();
-				this.xtag.hide();
+				this.hide();
 			}
 		},
 
@@ -67,7 +67,7 @@
 					xtag.fireEvent(self, 'show');
 					self.durationTimeout = setTimeout(function() {
 						self.durationTimeout = null;
-						self.xtag.hide();
+						self.hide();
 					}, self.duration);
 				}
 			},

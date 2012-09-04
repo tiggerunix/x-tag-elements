@@ -2,7 +2,7 @@
 xtag.register('x-accordion', {
 	events: {
 		'tap:delegate(x-toggler)': function(event){
-			this.xtag.selectToggler();
+			this.selectToggler();
 		}
 	},
 	methods: {
@@ -14,11 +14,11 @@ xtag.register('x-accordion', {
 		},
 		nextToggler: function(){
 			var togglers = xtag.query(this.parentNode, 'x-toggler');
-			if (togglers[0]) (togglers[this.xtag.getSelectedIndex() + 1] || togglers[0]).xtag.selectToggler();
+			if (togglers[0]) (togglers[this.getSelectedIndex() + 1] || togglers[0]).selectToggler();
 		},
 		previousToggler: function(){
 			var togglers = xtag.query(this.parentNode, 'x-toggler');
-			if (togglers[0]) (togglers[this.xtag.getSelectedIndex() - 1] || togglers.pop()).xtag.selectToggler();
+			if (togglers[0]) (togglers[this.getSelectedIndex() - 1] || togglers.pop()).selectToggler();
 		}
 	}
 });
@@ -30,9 +30,9 @@ xtag.register('x-toggler', {
 	events: {
 		'keydown': function(event){
 			switch(event.keyCode) {
-				case 13: this.xtag.selectToggler(); break;
-				case 37: this.parentNode.xtag.previousToggler(); break;
-				case 39: this.parentNode.xtag.nextToggler(); break;
+				case 13: this.selectToggler(); break;
+				case 37: this.parentNode.previousToggler(); break;
+				case 39: this.parentNode.nextToggler(); break;
 			}
 		}
 	},

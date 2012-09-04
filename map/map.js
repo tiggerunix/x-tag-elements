@@ -24,7 +24,7 @@
 		onCreate: function(){
 			var element = this;
 			this.xtag.map = new L.Map(this);
-			this.xtag.setTileLayer();
+			this.setTileLayer();
 			['click','dblclick','mousedown','load','viewreset',
 			'movestart','move','moveend','dragstart','drag','dragend',
 			'zoomend','layeradd','layerremove','locationfound',
@@ -49,7 +49,7 @@
 		setters: {
 			'tileSet': function(value){
 				this.setAttribute('data-tile-set', value);
-				this.xtag.setTileLayer();
+				this.setTileLayer();
 			},
 			'zoom': function(value){
 				this.setAttribute('data-zoom', value);

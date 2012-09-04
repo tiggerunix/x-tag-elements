@@ -36,12 +36,12 @@
 					actions.appendChild(button);
 					button.addEventListener('click', function(event) {
 						event.preventDefault();
-						self.xtag.hide(type);
+						self.hide(type);
 					});
 				}
 			});
 
-			self.xtag.show();
+			self.show();
 		},
 
 		setters: {

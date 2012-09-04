@@ -6,9 +6,9 @@
 	 */
 	function toggleDropdownMenu(dropdownMenu) {
 		if (dropdownMenu.getAttribute(styleActiveAttr)) {
-			dropdownMenu.xtag.hide();
+			dropdownMenu.hide();
 		} else {
-			dropdownMenu.xtag.show();
+			dropdownMenu.show();
 		}
 	}
 
@@ -25,7 +25,7 @@
 			}
 
 			if (dropdownMenu.getAttribute(styleActiveAttr)) {
-				dropdownMenu.xtag.hide(null);
+				dropdownMenu.hide(null);
 			}
 		});
 	}
@@ -82,7 +82,7 @@
 
 				event.preventDefault();
 				xtag.fireEvent(li, 'select');
-				dropdownMenu.xtag.hide(li);
+				dropdownMenu.hide(li);
 			}
 		},
 

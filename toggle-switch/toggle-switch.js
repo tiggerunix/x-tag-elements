@@ -23,7 +23,7 @@
 
 				if (!this.hasMouseBeenDragged) {
 					// don't toggle twice if drag + click
-					toggleSwitch.xtag.toggle();
+					toggleSwitch.toggle();
 				}
 			},
 
@@ -43,7 +43,7 @@
 				if (this.isMouseDown && !this.hasMouseBeenDragged) {
 					// mouse is being dragged
 					event.preventDefault();
-					toggleSwitch.xtag.toggle();
+					toggleSwitch.toggle();
 
 					// only trigger drag toggle once
 					this.hasMouseBeenDragged = true;

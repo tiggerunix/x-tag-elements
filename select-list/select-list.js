@@ -12,7 +12,7 @@
 	function hideVisibleSelectLists() {
 		xtag.query(document, 'x-select-list').forEach(function(selectList) {
 			if (selectList.getAttribute(styleActiveAttr)) {
-				selectList.xtag.hide();
+				selectList.hide();
 			}
 		});
 	}
@@ -61,11 +61,11 @@
 
 				button.addEventListener('click', function(event) {
 					event.preventDefault();
-					self.xtag.hide();
+					self.hide();
 				});
 			}
 
-			self.xtag.show();
+			self.show();
 		},
 
 		events: {
@@ -85,7 +85,7 @@
 					}
 				} else {
 					xtag.fireEvent(this, 'select');
-					selectList.xtag.hide(this);
+					selectList.hide(this);
 				}
 			}
 		},
@@ -153,7 +153,7 @@
 				if (self.getAttribute(styleActiveAttr)) {
 					self.removeAttribute(styleActiveAttr);
 					if (self.multiSelect) {
-						xtag.fireEvent(self, 'hide', { selectedItems: self.xtag.getSelected() });
+						xtag.fireEvent(self, 'hide', { selectedItems: self.getSelected() });
 					} else {
 						xtag.fireEvent(self, 'hide', { selectedItem: selectedItem });
 					}
