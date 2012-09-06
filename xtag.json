@@ -1,16 +1,24 @@
 {
 	"xtags":[
-		"accordian",
+		"accordion",
 		"actionbar",
+		"alert-popup", 
 		"autosuggest",
+		"date-time-picker", 
+		"dialog-toast", 
+		"dropdown-menu", 
 		"flipbox",
+		"list-view", 
 		"map", 
 		"modal",
 		"overlay",
 		"pager",
 		"panel",
+		"select-list",
 		"slidebox",
+		"slider", 
 		"tabbox", 
-		"list-view"
+		"toggler",
+		"toggler-switch"
 	]
 }

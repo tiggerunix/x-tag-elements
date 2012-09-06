@@ -4,8 +4,8 @@
 	var printValue = function(event, element){
 		if (this.parentNode == element.lastElementChild){
 			element.firstElementChild.value = this.textContent;
-			element.firstElementChild.nextSibling.value = JSON.stringify(this.xtag.data);
-			element.xtag.hideSuggestions();
+			element.firstElementChild.nextSibling.value = JSON.stringify(this.data);
+			element.hideSuggestions();
 			element.firstElementChild.focus();
 			xtag.fireEvent(element, 'change');
 		}
@@ -27,13 +27,13 @@
 			}
 		},
 		events: {
-			'dataready:preventable': function(){				
-				this.xtag.clearSuggestions();
-				this.xtag.showSuggestions();
+			'dataready:preventable': function(){
+				this.clearSuggestions();
+				this.showSuggestions();
 			},
 			'keydown:keypass(38, 40)': function(event, element){
 				event.preventDefault();
-				this.xtag.showSuggestions();
+				this.showSuggestions();
 				
 				var first = element.lastElementChild.firstElementChild;	
 				if (!first) return element;
@@ -57,7 +57,7 @@
 			},
 			'blur': function(event, element){
 				setTimeout(function(){
-					if (element != document.activeElement && !element.contains(document.activeElement)) element.xtag.hideSuggestions();
+					if (element && element != document.activeElement && !element.contains(document.activeElement)) element.hideSuggestions();
 				}, 1);
 			}
 		},
@@ -67,7 +67,7 @@
 					li.setAttribute('tabindex', 0);
 					li.innerHTML = content;
 					li.xtag = { data: data };
-				this.lastElementChild.appendChild(li);	
+				this.lastElementChild.appendChild(li);
 			},
 			clearSuggestions: function(){
 				this.lastElementChild.innerHTML = '';

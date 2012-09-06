@@ -6,11 +6,9 @@
 
 		<title>X-Tag - Accordion Test</title>
 		
-		<link href="../../demo/images/shortcut.png" rel="shortcut icon" type="image/x-icon" />
-		<link rel="stylesheet" type="text/css" href="../../demo/css/reset.css" />
 		<link rel="stylesheet" type="text/css" href="accordion.css" />
-<!-- 		<link rel="stylesheet" type="text/css" href="themes/odin.css" /> -->
-		
+		<script type="text/javascript" src="../lib/x-tag/x-tag.js"></script>
+		<script type="text/javascript" src="accordion.js"></script>
 		
 		<style>
 			#accordion {
@@ -85,7 +83,6 @@
 					
 					section.innerHTML = 'This panel was added dynamically, it shows when you click on the toggler element above entitled "Toggler ' + (length + 1) + '"';
 					demo.appendChild(section);
-					
 					demo.xtag.setSelected(toggler);
 					break;
 				

@@ -9,7 +9,7 @@
 		
 		<link rel="stylesheet" type="text/css" href="slidebox.css"/>		
 		
-		<script type="text/javascript" src="../../x-tag.js"></script>		
+		<script type="text/javascript" src="../lib/x-tag/x-tag.js"></script>		
 		<script type="text/javascript" src="slidebox.js"></script>		
 		<style type="text/css">
 			#slidebox_demo {
@@ -75,15 +75,15 @@
 			switch(actionType) {
 				
 				case 'slideNext':			
-					demo.xtag.slideNext();
+					demo.slideNext();
 					break;
 
 				case 'slidePrevious':
-					demo.xtag.slidePrevious();
+					demo.slidePrevious();
 					break;
 
 				case 'slideTo':
-					demo.xtag.slideTo(2);
+					demo.slideTo(2);
 					break;
 				case 'slideOrientation':
 					demo['data-orientation'] = demo.getAttribute('data-orientation') == 'x' ? 'y' : 'x';

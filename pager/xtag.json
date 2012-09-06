@@ -29,9 +29,7 @@
 
 		},
 		"setters": {
-			"data-current-page":{
-				"description": "Sets the attribute, refreshes the pager and fires pagechanged event.",
-			}
-		} 
+			"data-current-page": "Sets the attribute, refreshes the pager and fires pagechanged event."
+		}
 	}
 }

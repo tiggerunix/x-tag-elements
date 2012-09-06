@@ -1,68 +1,52 @@
 (function(window, document, undefined) {
 	var durationAttr = 'data-duration';
 	var locationAttr = 'data-location';
-	var excludeCloseAttr = 'data-exclude-close';
+	var closeSelector = '.x-toast-close';
 
 	xtag.register('x-toast', {
-		onCreate: function() {
-			this.duration = this.getAttribute(durationAttr);
-			this.location = this.getAttribute(locationAttr);
-			this.excludeClose = this.getAttribute(excludeCloseAttr);
-		},
-
 		onInsert: function() {
-			// insert a close button if not already present
-			var closeSelector = '.close';
-			if (!this.excludeClose && xtag.query(this, closeSelector).length === 0) {
-				this.innerHTML += '<a href="#close" class="close">&#215;</a>';
-
-				var close = xtag.query(this, closeSelector)[0];
-				var self = this;
-				close.addEventListener('click', function(event) {
-					event.preventDefault();
-					self.xtag.hide();
-				});
+			// insert a close button if not already present; don't show one on touch
+			// devices, as the whole toast message acts as a dismiss target
+			if (!('ontouchend' in document) && xtag.query(this, closeSelector).length === 0) {
+				this.innerHTML += '<a href="#close" class="' + closeSelector.substring(1) +
+					'">&#215;</a>';
 			}
 
-			this.xtag.show();
+			this.show();
+		},
+
+		events: {
+			'click:touch': function(event) {
+				event.preventDefault();
+				this.hide();
+			}
 		},
 
 		setters: {
 			duration: function(duration) {
-				// default duration is 3 seconds
-				duration = parseInt(duration, 10) || 3000;
 				this.setAttribute(durationAttr, duration);
 			},
 
 			location: function(location) {
-				// default location is bottom
-				if (location !== 'top') {
-					location = 'bottom';
-				}
-
 				this.setAttribute(locationAttr, location);
-			},
-
-			excludeClose: function(excludeClose) {
-				if (excludeClose) {
-					this.setAttribute(excludeCloseAttr, 'true');
-				} else {
-					this.removeAttribute(excludeCloseAttr);
-				}
 			}
 		},
 
 		getters: {
 			duration: function() {
-				return parseInt(this.getAttribute(durationAttr), 10);
+				// default duration is 3 seconds
+				return parseInt(this.getAttribute(durationAttr), 10) || 3000;
 			},
 
 			location: function() {
-				return this.getAttribute(locationAttr);
-			},
+				var location = this.getAttribute(locationAttr);
 
-			excludeClose: function() {
-				return this.getAttribute(excludeCloseAttr);
+				// default location is bottom
+				if (location !== 'top') {
+					location = 'bottom';
+				}
+
+				return location;
 			}
 		},
 
@@ -83,7 +67,7 @@
 					xtag.fireEvent(self, 'show');
 					self.durationTimeout = setTimeout(function() {
 						self.durationTimeout = null;
-						self.xtag.hide();
+						self.hide();
 					}, self.duration);
 				}
 			},
