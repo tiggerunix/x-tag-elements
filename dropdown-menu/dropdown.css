@@ -5,14 +5,10 @@ x-dropdown {
 	overflow-y: auto;
 }
 
-x-dropdown x-toggler {
-	cursor: pointer;
-}
-
 x-dropdown menu {
 	display: none;
 }
 	
-x-dropdown menu[data-toggled]  {
+x-dropdown menu[selected]  {
     display: block;
 }

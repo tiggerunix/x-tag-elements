@@ -1,46 +1,48 @@
 
-xtag.register('x-accordion', {
-	events: {
-		'tap:delegate(x-toggler)': function(event){
-			this.xtag.selectToggler();
-		}
-	},
-	methods: {
-		getSelectedIndex: function(){
-			return xtag.query(this, 'x-toggler').indexOf(this.querySelector('x-toggler[selected="true"]'));
-		},
-		getSelectedToggler: function(){
-			return xtag.query(this, 'x-toggler[selected="true"]')[0];
-		},
-		nextToggler: function(){
-			var togglers = xtag.query(this.parentNode, 'x-toggler');
-			if (togglers[0]) (togglers[this.xtag.getSelectedIndex() + 1] || togglers[0]).xtag.selectToggler();
-		},
-		previousToggler: function(){
-			var togglers = xtag.query(this.parentNode, 'x-toggler');
-			if (togglers[0]) (togglers[this.xtag.getSelectedIndex() - 1] || togglers.pop()).xtag.selectToggler();
-		}
-	}
-});
+(function(){
+	
+	var hlevels = 'h1, h2, h3, h4, h5, h6',
+		select = function(heading){
+			xtag.query(heading.parentNode, hlevels).forEach(function(el){
+				el[(el == heading ? 'set' : 'remove') + 'Attribute']('selected', null);
+			});
+			xtag.fireEvent(heading, 'selected');
+		};
 
-xtag.register('x-toggler', {
-	onCreate: function(){
-		this.setAttribute('tabindex', 0);
-	},
-	events: {
-		'keydown': function(event){
-			switch(event.keyCode) {
-				case 13: this.xtag.selectToggler(); break;
-				case 37: this.parentNode.xtag.previousToggler(); break;
-				case 39: this.parentNode.xtag.nextToggler(); break;
+	xtag.register('x-accordion', {
+		onCreate: function(){
+			var selected = xtag.queryChildren(this, '[selected]')[0];
+			if (selected) select(selected);
+		},
+		events: {
+			'click:touch:delegate(h1, h2, h3, h4, h5, h6)': function(event, accordion){
+				if (this.parentNode == accordion) select(this);
+			},
+			'keydown:delegate(h1, h2, h3, h4, h5, h6)': function(event, accordion){
+				if (this.parentNode == accordion) switch(event.keyCode) {
+					case 13: select(this); break;
+					case 37: accordion.xtag.selectPrevious(); break;
+					case 39: accordion.xtag.selectNext(); break;
+				}
+			}
+		},
+		methods: {
+			getSelectedIndex: function(){
+				return xtag.queryChildren(this, hlevels).indexOf(xtag.queryChildren(this, '[selected]')[0]);
+			},
+			getSelected: function(){
+				return xtag.queryChildren(this, '[selected]')[0];
+			},
+			setSelected: select,
+			selectNext: function(){
+				var headings = xtag.query(this, hlevels);
+				if (headings[0]) select(headings[this.xtag.getSelectedIndex() + 1] || headings[0]);
+			},
+			selectPrevious: function(){
+				var headings = xtag.query(this, hlevels);
+				if (headings[0]) select(headings[this.xtag.getSelectedIndex() - 1] || headings.pop());
 			}
 		}
-	},
-	methods: {
-		selectToggler: function(){
-			xtag.query(this.parentNode, 'x-toggler').forEach(function(el){
-				el.setAttribute('selected', el == this ? true : null);
-			}, this);
-		}
-	}
-});
+	});
+	
+})();

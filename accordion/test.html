@@ -9,11 +9,13 @@
 		<link href="../../demo/images/shortcut.png" rel="shortcut icon" type="image/x-icon" />
 		<link rel="stylesheet" type="text/css" href="../../demo/css/reset.css" />
 		<link rel="stylesheet" type="text/css" href="accordion.css" />
+<!-- 		<link rel="stylesheet" type="text/css" href="themes/odin.css" /> -->
 		
 		
 		<style>
 			#accordion {
-				width: 300px;
+				width: 400px;
+				height: 500px;
 				margin: 50px;
 			}
 		</style>
@@ -32,30 +34,31 @@
 	</nav>
 	
 	<x-accordion id="accordion" class="style">
-		<x-toggler selected="true">Toggler 1</x-toggler>
-		<div>
+		<h4 tabindex="1" selected>Toggler 1</h4>
+		<section>
 			<p>
 				Tabboxes are great for showing users only the content they need to see, while providing users an easy way to access additional content on-demand.
 			</p>
-		</div>
+		</section>
 		
-		<x-toggler>Toggler 2</x-toggler>
-		<div>
+		<h4 tabindex="2">Toggler 2</h4>
+		<section>
 			<p>
 				Examples of use-cases for tabboxes include: a set of step-wise directions, grouping like content elements together, or as a building block for a tabbed viewing interface in a mobile web app.
 			</p>
-		</div>
+		</section>
 		
-		<x-toggler>Toggler 3</x-toggler>
-		<div>
+		<h4 tabindex="3">Toggler 3</h4>
+		<section>
 			<p>
 				In short, tabboxes are pretty freaking cool, and when you pair them with CSS animations/transitions, you can do things with a few styles that used to take a ton of JavaScript and custom code.
 			</p>
-		</div>
+		</section>
 	</x-accordion>
+	
 </body>
 <script type="text/javascript" src="../lib/x-tag/x-tag.js"></script>
-		<script type="text/javascript" src="accordion.js"></script>
+<script type="text/javascript" src="accordion.js"></script>
 <script type="text/javascript">
 
 	document.addEventListener('click', function(e){
@@ -73,25 +76,25 @@
 			switch(actionType) {
 
 				case 'addSection':
-						toggler = document.createElement('x-toggler'),
-						div = document.createElement('div'),
-						length = xtag.query(demo, 'x-toggler').length;
+						var toggler = document.createElement('h4'),
+						section = document.createElement('section'),
+						length = xtag.query(demo, 'h4').length;
 						
 					toggler.textContent = 'Toggler ' + (length + 1);
 					demo.appendChild(toggler);
 					
-					div.innerHTML = 'This panel was added dynamically, it shows when you click on the toggler element above entitled "Toggler ' + (length + 1) + '"';
-					demo.appendChild(div);
+					section.innerHTML = 'This panel was added dynamically, it shows when you click on the toggler element above entitled "Toggler ' + (length + 1) + '"';
+					demo.appendChild(section);
 					
-					toggler.xtag.selectToggler();
+					demo.xtag.setSelected(toggler);
 					break;
 				
 				case 'previousToggler':
-					demo.xtag.previousToggler();
+					demo.xtag.selectPrevious();
 					break;
 					
 				case 'nextToggler':
-					demo.xtag.nextToggler();
+					demo.xtag.selectNext();
 					break;
 			}
 		}

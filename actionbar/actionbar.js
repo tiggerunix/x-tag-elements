@@ -46,29 +46,47 @@
 	
 	
 	
-	var onCommand = function(e){
-		xtag.fireEvent(this, 'command', { command: this.getAttribute('command') });
+	var onCommand = function(element){
+		xtag.fireEvent(element, 'command', { command: element.getAttribute('command') });
 	}
+	
+	var selectAction = function(element){
+		onCommand(element);
+		if (element.parentNode && element.parentNode.tagName == 'X-ACTIONBAR') {
+			xtag.queryChildren(element.parentNode, 'x-action').forEach(function(action){
+				action.removeAttribute('selected');
+			});
+			element.setAttribute('selected', null);
+		}
+	};
 
 	xtag.register('x-action', {
-		content: '<img /><label></label>',
+		content: '<img />',
 		onCreate: function(){
 			this.setAttribute('tabindex', 0);
 			this.label = this.getAttribute('label');
-			this.src = this.getAttribute('src');
+			this.icon = this.getAttribute('icon');
+			if (this.hasAttribute('selected')) selectAction(this);
 		},
 		events: {
-			'tap': onCommand,
-			'keyup:keypass(13)': onCommand,
+			'click:touch': function(){
+				selectAction(this);
+			},
+			'keyup:keypass(13)': function(){
+				onCommand(this);
+			}
 		},
-		setters: {
-			'src': function(src){
-				this.firstElementChild.src = src; 
-				this.setAttribute('src', src);
+		getters: {
+			'icon': function(url){
+				return this.getAttribute('icon');
 			},
 			'label': function(html){
-				this.lastElementChild.innerHTML = html;
-				this.setAttribute('label', html);
+				return this.getAttribute('label');
+			}
+		},
+		setters: {
+			'icon:attribute(icon)': function(url){
+				this.firstElementChild.src = url;
 			}
 		}
 	});

@@ -3,13 +3,13 @@
 
 	var transform = xtag.prefix.js + 'Transform',
 		getState = function(el){
-			var selected = xtag.query(el, 'x-slides > x-slide[selected="true"]')[0] || 0;
+			var selected = xtag.query(el, 'x-slides > x-slide[selected]')[0] || 0;
 			return [selected ? xtag.query(el, 'x-slides > x-slide').indexOf(selected) : selected, el.firstElementChild.children.length - 1];
 		},
 		slide = function(el, index){
 			var slides = xtag.toArray(el.firstElementChild.children);
 			slides.forEach(function(slide){ slide.removeAttribute('selected'); });
-			slides[index || 0].setAttribute('selected', true);
+			slides[index || 0].setAttribute('selected', null);
 			el.firstElementChild.style[transform] = 'translate'+ (el.getAttribute('data-orientation') || 'x') + '(' + (index || 0) * (-100 / slides.length) + '%)';
 		},
 		init = function(toSelected){
@@ -32,7 +32,7 @@
 			});
 			
 			if (toSelected) {
-				var selected = slides.querySelector('[selected="true"]');
+				var selected = slides.querySelector('[selected]');
 				if (selected) slide(this, children.indexOf(selected) || 0);
 			}
 		};
