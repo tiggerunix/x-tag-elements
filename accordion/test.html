@@ -83,15 +83,15 @@
 					
 					section.innerHTML = 'This panel was added dynamically, it shows when you click on the toggler element above entitled "Toggler ' + (length + 1) + '"';
 					demo.appendChild(section);
-					demo.xtag.setSelected(toggler);
+					demo.setSelected(toggler);
 					break;
 				
 				case 'previousToggler':
-					demo.xtag.selectPrevious();
+					demo.selectPrevious();
 					break;
 					
 				case 'nextToggler':
-					demo.xtag.selectNext();
+					demo.selectNext();
 					break;
 			}
 		}

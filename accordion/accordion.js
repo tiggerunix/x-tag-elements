@@ -21,8 +21,8 @@
 			'keydown:delegate(h1, h2, h3, h4, h5, h6)': function(event, accordion){
 				if (this.parentNode == accordion) switch(event.keyCode) {
 					case 13: select(this); break;
-					case 37: accordion.xtag.selectPrevious(); break;
-					case 39: accordion.xtag.selectNext(); break;
+					case 37: accordion.selectPrevious(); break;
+					case 39: accordion.selectNext(); break;
 				}
 			}
 		},
@@ -36,11 +36,11 @@
 			setSelected: select,
 			selectNext: function(){
 				var headings = xtag.query(this, hlevels);
-				if (headings[0]) select(headings[this.xtag.getSelectedIndex() + 1] || headings[0]);
+				if (headings[0]) select(headings[this.getSelectedIndex() + 1] || headings[0]);
 			},
 			selectPrevious: function(){
 				var headings = xtag.query(this, hlevels);
-				if (headings[0]) select(headings[this.xtag.getSelectedIndex() - 1] || headings.pop());
+				if (headings[0]) select(headings[this.getSelectedIndex() - 1] || headings.pop());
 			}
 		}
 	});
