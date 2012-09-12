@@ -12,9 +12,7 @@
 		<script type="text/javascript" src="../lib/x-tag/x-tag.js"></script>		
 		<script type="text/javascript" src="mediaquery.js"></script>
 		
-		<x-mediaquery media="only screen and (min-width : 400px) and (max-width : 600px)">
-			<style></style>
-		</x-mediaquery>
+		<x-mediaquery id="small_desktop" for="app foo" media="only screen and (min-width : 400px) and (max-width : 600px)"></x-mediaquery>
 		
 		<style type="text/css">
 			#mediaquery_demo {
@@ -26,11 +24,11 @@
 		</style>
 	</head>
 
-<body>
+<body id="app">
 
 <div id="tags" class="max-width">
 
-	<dl>
+	<dl id="foo">
 		
 		<dt>Media Query</dt>
 		<dd id="flipbox">
@@ -55,11 +53,11 @@
 <script type="text/javascript">
 
 	
-	xtag.query(document, 'x-mediaquery style')[0].addEventListener('mediaqueryactive', function(){
+	xtag.query(document, 'x-mediaquery')[0].addEventListener('mediaqueryactive', function(){
 		console.log('active');
 	});
 	
-	xtag.query(document, 'x-mediaquery style')[0].addEventListener('mediaqueryinactive', function(){
+	xtag.query(document, 'x-mediaquery')[0].addEventListener('mediaqueryinactive', function(){
 		console.log('inactive');
 	});
 	
