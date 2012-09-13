@@ -1,7 +1,25 @@
 
 (function(){
-	
-	var fireMatches = function(element, mql, attr){
+
+  	var delayedEvents = [];
+
+	document.addEventListener('__DOMComponentsLoaded__', function(){
+		delayedEvents.forEach(function(item){
+			xtag.fireEvent.apply(null, item);
+		});
+		delayedEvents = [];
+		document.removeEventListener(this);
+	});
+
+	var ensureFireEvent = function(element, eventType, payload, options){
+		if (xtag.domready) {
+			xtag.fireEvent(element, eventType, payload, options);
+		} 
+		else {
+			delayedEvents.push(xtag.toArray(arguments));
+		}
+	}
+	var fireMatches = function(element, mql, attr, refresh){
 			if (mql.matches) {
 				var eventType = 'mediaqueryactive';
 				element.setAttribute('matches', null);
@@ -10,24 +28,25 @@
 				var eventType = 'mediaqueryinactive';
 				element.removeAttribute('matches');
 			}
-			xtag.fireEvent(element, eventType, { 'query': mql });
+			var payload = { 'query': mql, 'queryid': element.id };			
+			if (!refresh) ensureFireEvent(element, eventType, payload);
 			(attr || (element.getAttribute('for') || '').split(' ')).forEach(function(id){
 				var node = document.getElementById(id);
 				if (node) {
 					xtag[(eventType == 'mediaqueryactive' ? 'add' : 'remove') + 'Class'](node, element.id);
-					xtag.fireEvent(node, eventType, { 'query': mql }, { bubbles: false });
+					if (!refresh) ensureFireEvent(node, eventType, payload, { bubbles: false });
 				}
 			});
 		},
-		attachQuery = function(element, query, attr){
-			var query = query || element.getAttribute('media');
+		attachQuery = function(element, query, attr, refresh){
+			query = query || element.getAttribute('media');
 			if (query){
 				if (element.xtag.query) element.xtag.query.removeListener(element.xtag.listener);
-				var query = element.xtag.query = window.matchMedia(query),
-					listener = element.xtag.listener = function(mql){
-						fireMatches(element, mql);
-					};
-				fireMatches(element, query, attr);
+				query = element.xtag.query = window.matchMedia(query);
+				var listener = element.xtag.listener = function(mql){
+					fireMatches(element, mql);
+				};
+				fireMatches(element, query, attr, refresh);
 				query.addListener(listener);
 			}
 		};
