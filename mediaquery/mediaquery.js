@@ -1,7 +1,7 @@
 
 (function(){
 	
-	var fireMatches = function(element, mql, attr, refresh){
+	var fireMatches = function(element, mql, attr){
 			if (mql.matches) {
 				var eventType = 'mediaqueryactive';
 				element.setAttribute('matches', null);
@@ -10,16 +10,16 @@
 				var eventType = 'mediaqueryinactive';
 				element.removeAttribute('matches');
 			}
-			if (!refresh) xtag.fireEvent(element, eventType, { 'query': mql });
+			xtag.fireEvent(element, eventType, { 'query': mql });
 			(attr || (element.getAttribute('for') || '').split(' ')).forEach(function(id){
 				var node = document.getElementById(id);
 				if (node) {
 					xtag[(eventType == 'mediaqueryactive' ? 'add' : 'remove') + 'Class'](node, element.id);
-					if (!refresh) xtag.fireEvent(node, eventType, { 'query': mql }, { bubbles: false });
+					xtag.fireEvent(node, eventType, { 'query': mql }, { bubbles: false });
 				}
 			});
 		},
-		attachQuery = function(element, query, attr, refresh){
+		attachQuery = function(element, query, attr){
 			var query = query || element.getAttribute('media');
 			if (query){
 				if (element.xtag.query) element.xtag.query.removeListener(element.xtag.listener);
@@ -27,7 +27,7 @@
 					listener = element.xtag.listener = function(mql){
 						fireMatches(element, mql);
 					};
-				fireMatches(element, query, attr, refresh);
+				fireMatches(element, query, attr);
 				query.addListener(listener);
 			}
 		};
@@ -61,19 +61,18 @@
 			},
 			'for:attribute(for)': function(value){
 				var next = (value || '').split(' ');
-				
 				(this.getAttribute('for') || '').split(' ').map(function(id){
 					var index = next.indexOf(id);
 					if (index == -1){
 						var element = document.getElementById(id);
-						xtag.removeClass(element, this.id);
-						xtag.fireEvent(element, 'mediaqueryremoved');
+						if (element){
+							xtag.removeClass(element, this.id);
+							xtag.fireEvent(element, 'mediaqueryremoved');
+						}
 					}
 					else next.splice(index, 1);
-					
 				}, this);
-				
-				attachQuery(this, element.getAttribute('media'), next, true);
+				attachQuery(this, element.getAttribute('media'), next);
 			}
 		}
 	});
