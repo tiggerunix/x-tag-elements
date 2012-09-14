@@ -54,20 +54,44 @@
 
 	
 	xtag.query(document, 'x-mediaquery')[0].addEventListener('mediaqueryactive', function(){
-		console.log('active');
+		console.log('active', this);
 	});
 	
 	xtag.query(document, 'x-mediaquery')[0].addEventListener('mediaqueryinactive', function(){
-		console.log('inactive');
+		console.log('inactive', this);
 	});
 	
+	
 	document.addEventListener('mediaqueryactive', function(event){
-		console.log('active', event.query);
+		console.log('active', this);
 	});
 	
 	document.addEventListener('mediaqueryinactive', function(event){
-		console.log('inactive', event.query);
+		console.log('inactive', this);
 	});
+	
+	
+	document.getElementById('tags').addEventListener('mediaqueryactive', function(event){
+		console.log('active', this);
+	});
+	
+	document.getElementById('tags').addEventListener('mediaqueryinactive', function(event){
+		console.log('inactive', this);
+	});
+	
+	
+	document.getElementById('foo').addEventListener('mediaqueryactive', function(event){
+		console.log('active', this);
+	});
+	
+	document.getElementById('foo').addEventListener('mediaqueryinactive', function(event){
+		console.log('inactive', this);
+	});
+	
+	
+	setTimeout(function(){
+		xtag.query(document, 'x-mediaquery')[0].setAttribute('for', 'app foo tags');
+	}, 2000);
 	
 	document.addEventListener('click', function(e){
 		

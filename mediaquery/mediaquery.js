@@ -1,44 +1,26 @@
 
 (function(){
-
-  	var delayedEvents = [];
-
-	document.addEventListener('__DOMComponentsLoaded__', function(){
-		delayedEvents.forEach(function(item){
-			xtag.fireEvent.apply(null, item);
-		});
-		delayedEvents = [];
-		document.removeEventListener(this);
-	});
-
-	var ensureFireEvent = function(element, eventType, payload, options){
-		if (xtag.domready) {
-			xtag.fireEvent(element, eventType, payload, options);
-		} 
-		else {
-			delayedEvents.push(xtag.toArray(arguments));
-		}
-	}
-	var fireMatches = function(element, mql, attr, refresh){
-			if (mql.matches) {
-				var eventType = 'mediaqueryactive';
-				element.setAttribute('matches', null);
-			}
-			else {
-				var eventType = 'mediaqueryinactive';
-				element.removeAttribute('matches');
-			}
-			var payload = { 'query': mql, 'queryid': element.id };			
-			if (!refresh) ensureFireEvent(element, eventType, payload);
+	
+	var delayedEvents = [],
+		fireMatches = function(element, mql, attr, skipFire){
+			var state = (mql.matches) ? ['active', 'set', 'add'] : ['inactive', 'remove', 'remove'],
+				eventType = 'mediaquery' + state[0],
+				eventData = { 'query': mql };
+			element[state[1] + 'Attribute']('matches', null);			
+			if (!skipFire) xtag.fireEvent(element, eventType, eventData);
 			(attr || (element.getAttribute('for') || '').split(' ')).forEach(function(id){
 				var node = document.getElementById(id);
 				if (node) {
-					xtag[(eventType == 'mediaqueryactive' ? 'add' : 'remove') + 'Class'](node, element.id);
-					if (!refresh) ensureFireEvent(node, eventType, payload, { bubbles: false });
+					xtag[state[2] + 'Class'](node, element.id);
+					if (!skipFire) xtag.fireEvent(node, eventType, eventData, { bubbles: false });
 				}
 			});
 		},
-		attachQuery = function(element, query, attr, refresh){
+		attachQuery = function(element, query, attr, skipFire){
+			if (!xtag.domready){
+				skipFire = true;
+				delayedEvents.push(element);
+			}
 			query = query || element.getAttribute('media');
 			if (query){
 				if (element.xtag.query) element.xtag.query.removeListener(element.xtag.listener);
@@ -46,10 +28,18 @@
 				var listener = element.xtag.listener = function(mql){
 					fireMatches(element, mql);
 				};
-				fireMatches(element, query, attr, refresh);
+				fireMatches(element, query, attr, skipFire);
 				query.addListener(listener);
 			}
+		},
+		delayedListener = function(){
+			delayedEvents = delayedEvents.map(function(element){
+				return attachQuery(element);
+			});
+			document.removeEventListener(delayedListener);
 		};
+		
+	document.addEventListener('__DOMComponentsLoaded__', delayedListener);
 	
 	xtag.register('x-mediaquery', {
 		onCreate: function(){
@@ -67,7 +57,6 @@
 			},
 		},
 		setters: {
-			
 			'media:attribute(media)': function(query){
 				attachQuery(this, query);
 			},
@@ -91,7 +80,7 @@
 					}
 					else next.splice(index, 1);
 				}, this);
-				attachQuery(this, element.getAttribute('media'), next);
+				attachQuery(this, null, next);
 			}
 		}
 	});
