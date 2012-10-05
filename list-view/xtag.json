@@ -6,6 +6,7 @@
 	"author": "Arron Schaar",
 	"images": [],	
 	"categories": ["structural"],
+	"demo": "demo",
 	"compatibility": {	
 		"firefox": 5,
 		"chrome": 4,

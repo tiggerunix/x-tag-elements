@@ -6,6 +6,7 @@
 	"description": "An accordion is a collection of panels containing content separated by toggler elements.",
 	"images": [],	
 	"categories": ["structural"],
+	"demo": "demo"
 	"compatibility": {	
 		"firefox": 5,
 		"chrome": 4,

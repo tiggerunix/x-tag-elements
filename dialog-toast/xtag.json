@@ -5,7 +5,8 @@
 	"author": "Karthik Viswanathan",
 	"description": "A small popup message, generally triggered by an event, that disappears after a few seconds.",
 	"images": [],	
-	"categories": [""],
+	"categories": ["behavioral"],
+	"demo": "demo",
 	"compatibility": {
 		"firefox": 5,
 		"chrome": 4,

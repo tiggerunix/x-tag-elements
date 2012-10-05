@@ -1,11 +1,12 @@
 {	
 	"name": "Alert Popup",
 	"tagName": "x-alert",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"author": "Karthik Viswanathan",
 	"description": "A small popup, with a message, action buttons, and optional title, that requires user input to dismiss.",
 	"images": [],	
-	"categories": [""],
+	"categories": ["behavioral"],
+	"demo": "demo",
 	"compatibility": {
 		"firefox": 5,
 		"chrome": 4,

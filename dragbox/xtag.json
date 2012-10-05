@@ -5,6 +5,7 @@
 	"description": "",
 	"images": [],	
 	"categories": [""],
+	"demo": "demo",
 	"compatibility": {	
 		"firefox": 5,
 		"chrome": 4,
