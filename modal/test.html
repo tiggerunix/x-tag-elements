@@ -16,6 +16,7 @@
 		<style type="text/css">
 			#modal_demo{
 				background-color: white;
+				border: 1px solid;
 			}
 		</style>
 	</head>
@@ -28,7 +29,7 @@
 	
 		<dt>Modal</dt>
 		<dd>
-			<x-modal id="modal_demo" class="style">
+			<x-modal id="modal_demo" class="style" overlay>
 				<p>
 					All the railway lines north of the Thames and the South-Eastern people at Cannon Street had been warned by midnight on Sunday, and trains were being filled. 
 					People were fighting savagely for standing-room in the carriages even at two o'clock.  By three, people were being trampled and crushed even in Bishopsgate Street, 
@@ -42,11 +43,9 @@
 					the Thames and across the flats of Lambeth, cutting off all escape over the bridges in its sluggish advance.  Another bank drove over Ealing, and surrounded a little 
 					island of survivors on Castle Hill, alive, but unable to escape.
 				</p>
-				<div><button data-action-type="toggleOverlay">Toggle Overlay</button><button data-action-type="closeModal">Close</button></div>
+				<div id="modal"><button data-action-type="toggleOverlay">Toggle Overlay</button><button data-action-type="closeModal">Close</button></div>
 				<div id="screen_numbers"></div>
 			</x-modal>
-			<x-overlay id="modal_overlay"></x-overlay>
-			
 		</dd>
 	</dl>
 </div>
@@ -64,7 +63,7 @@ document.addEventListener('click', function(e){
 	
 		if (actionType) {
 		
-			var tag = action.parentElement.parentElement.id,
+			var tag = action.parentElement.id,
 				demo = document.getElementById(tag + '_demo');
 
 			switch(actionType) {
@@ -75,14 +74,7 @@ document.addEventListener('click', function(e){
 					break;
 				
 				case 'toggleOverlay':
-					var overlay = document.getElementById('modal_overlay');
-					if(!overlay){
-						overlay = document.createElement('x-overlay');
-						overlay.id = 'modal_overlay';
-						document.getElementById('modal_demo').parentElement.appendChild(overlay);
-					}else{
-						overlay.parentElement.removeChild(overlay);
-					}
+					demo.hasAttribute('overlay') ? demo.removeAttribute('overlay') : demo.setAttribute('overlay', null);
 					break;
 				
 				case 'closeModal':

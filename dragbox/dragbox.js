@@ -1,32 +1,51 @@
 
 (function(){
 	
-	var dragElement = null,
-		makeDraggable = function(element){
-			xtag.toArray(element.children).forEach(function(item){
-				item.setAttribute('draggable', true);
-			});
-		};
+	var originElement = null, dropElement = null;
 
 	xtag.register('x-dragbox', {
 		onCreate: function(){
 			var self = this;
-			makeDraggable(this);
-			xtag.observe(this, function(element){
-				if (element.parentNode == self) makeDraggable(self);
+			xtag.toArray(this.children).forEach(function(item){
+				item.setAttribute('draggable', true);
 			});
+			xtag.observe(this, function(element){
+				if (element.parentNode == self) element.setAttribute('draggable', true);
+			});
+		},
+		getters: {
+		
+		},
+		setters: {
+		
+		},
+		accessors: {
+			'for': {
+				get: function(){
+					
+				},
+				set: function(){
+					
+				}
+			}
 		},
 		events: {
 			dragstart: function(event){
 				if (event.target.parentNode == this){
+					originElement = event.target;
 					xtag.addClass(event.target, 'x-dragbox-drag-origin');
-					dragElement = this;
 					event.dataTransfer.effectAllowed = 'move';
 					event.dataTransfer.setData('text/html', this.innerHTML);
+					this.droppables
 				}
 			},
 			dragenter: function(event){
-				if (this != event.target) xtag.addClass(event.target, 'x-dragbox-drag-over');
+				var parent = event.target.parentNode;
+				if (event.target.id = parent && parent.tagName.match(/x-dragbox/i)){
+					console.log(event);
+					dropElement = event.target;
+					xtag.addClass(event.target, 'x-dragbox-drag-over');
+				}
 			},
 			dragover: function(event){
 				if (event.preventDefault) event.preventDefault();
@@ -34,13 +53,14 @@
 				return false;
 			},
 			dragleave: function(event){
+				if (dropElement != event.relatedTarget) dropElement = null;
 				xtag.removeClass(event.target, 'x-dragbox-drag-over');
 			},
 			dragdrop: function(event){
 				if (event.stopPropagation) event.stopPropagation();
-				if (dragElement != this) {
-					dragElement.innerHTML = this.innerHTML;
-					this.innerHTML = event.dataTransfer.getData('text/html');
+				console.log(dragElement, dropElement);
+				if (dropElement && dragElement != this) {
+					dropElement.parentNode.insertBefore(dragElement, dropElement);
 				}
 				xtag.removeClass(event.target, 'x-dragbox-drag-over');
 				return false;
