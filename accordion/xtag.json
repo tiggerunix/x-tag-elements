@@ -6,7 +6,7 @@
 	"description": "An accordion is a collection of panels containing content separated by toggler elements.",
 	"images": [],	
 	"categories": ["structural"],
-	"demo": "demo"
+	"demo": "demo",
 	"compatibility": {	
 		"firefox": 5,
 		"chrome": 4,
@@ -14,5 +14,27 @@
 		"opera": 12,
 		"android": 2.1,
 		"ios": 4
+	},
+	"documentation": {
+		"description": "",
+		"attributes": {
+
+		},
+		"events": {
+			"seleted": "Fires each time an item is selected."
+		}, 
+		"methods": {
+			"getSelectedIndex": "Returns the index of the selected item.",
+			"getSelected": "Returned the selected header element.",
+			"setSelected": "Sets the selected header element by passing a header element.",
+			"selectNext": "Selects the next section.",
+			"selectPrevious": "Selects the previous section."
+		}, 
+		"getters": {
+
+		}, 
+		"setters": {
+
+		}
 	}
 }
