@@ -15,7 +15,7 @@
 		"android": 2.1,
 		"ios": 4
 	},
-	"documentation":{
+	"documentation": {
 		"description": "",
 		"attributes": {
 			"data-primary-text": "Sets the primary button's text",
