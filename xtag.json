@@ -19,6 +19,6 @@
 		"slider", 
 		"tabbox", 
 		"toggler",
-		"toggler-switch"
+		"toggle-switch"
 	]
 }
