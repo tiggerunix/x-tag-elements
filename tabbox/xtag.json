@@ -4,7 +4,7 @@
 	"version": "0.0.1",	
 	"author": "Daniel Buchner",
 	"description": "A container used to display a set of tabbed pages of elements. ",
-	"images": [],	
+	"images": [],
 	"categories": ["structural"],
 	"compatibility": {	
 		"firefox": 5,
@@ -13,5 +13,10 @@
 		"opera": 12,
 		"android": 2.1,
 		"ios": 4
+	}, 
+	"documentation": {
+		"methods": {
+			"":""
+		}
 	}
 }

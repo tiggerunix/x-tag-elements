@@ -13,8 +13,5 @@
 		"opera": 12,
 		"android": 2.1,
 		"ios": 4
-	},
-	"dependencies":[
-		"mozilla/x-tag-elements/x-overlay#0.0.1"
-	]
+	}
 }

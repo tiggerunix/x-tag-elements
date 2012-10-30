@@ -1,7 +1,7 @@
 {	
 	"name": "List View",
 	"tagName": "x-listview",
-	"version": "0.0.1",	
+	"version": "0.0.2",	
 	"description": "A list of section headers with nested listitems.  This control also provides click/touch scrolling of the list",
 	"author": "Arron Schaar",
 	"images": [],	

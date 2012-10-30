@@ -19,12 +19,24 @@
 			element.xtag.map.setView(new L.LatLng(Number(location[0]), Number(location[1])), element.zoom);
 		}
 	};
+
+	var setTileLayer = function(){
+		if (this.xtag.tilelayer) this.xtag.map.removeLayer(this.xtag.tilelayer);
+		this.xtag.tilelayer = new L.TileLayer(
+			'http://{s}.tile.cloudmade.com/' + this.getAttribute('data-key') + '/' + 
+			(this.getAttribute('data-tile-set') || 997) + 
+			'/256/{z}/{x}/{y}.png', 
+			this.getAttribute('data-tile-options') || {}
+		);
+		this.xtag.map.addLayer(this.xtag.tilelayer);
+		setLocation(this);
+	}
 	
 	xtag.register('x-map', {
 		onCreate: function(){
 			var element = this;
 			this.xtag.map = new L.Map(this);
-			this.setTileLayer();
+			setTileLayer.call(this);
 			['click','dblclick','mousedown','load','viewreset',
 			'movestart','move','moveend','dragstart','drag','dragend',
 			'zoomend','layeradd','layerremove','locationfound',
@@ -49,7 +61,7 @@
 		setters: {
 			'tileSet': function(value){
 				this.setAttribute('data-tile-set', value);
-				this.setTileLayer();
+				setTileLayer.call(this);
 			},
 			'zoom': function(value){
 				this.setAttribute('data-zoom', value);
@@ -57,19 +69,6 @@
 			},
 			'location': function(value){
 				this.setAttribute('data-location', value);
-				setLocation(this);
-			}
-		},
-		methods: {
-			setTileLayer: function(){
-				if (this.xtag.tilelayer) this.xtag.map.removeLayer(this.xtag.tilelayer);
-				this.xtag.tilelayer = new L.TileLayer(
-					'http://{s}.tile.cloudmade.com/' + this.getAttribute('data-key') + '/' + 
-					(this.getAttribute('data-tile-set') || 997) + 
-					'/256/{z}/{x}/{y}.png', 
-					this.getAttribute('data-tile-options') || {}
-				);
-				this.xtag.map.addLayer(this.xtag.tilelayer);
 				setLocation(this);
 			}
 		}

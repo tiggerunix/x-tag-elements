@@ -1,10 +1,11 @@
 {	
 	"name": "Select List",
 	"tagName": "x-select-list",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"author": "Karthik Viswanathan",
 	"description": "A popup that prompts the user to select an item from a list.",
-	"images": [],	
+	"images": [],
+	"demo": "demo",
 	"categories": [""],
 	"compatibility": {
 		"firefox": 5,
@@ -14,7 +15,7 @@
 		"android": 2.1,
 		"ios": 4
 	},
-	"documentation":{
+	"documentation": {
 		"description": "",
 		"attributes": {
 			"data-multi-select": "Sets whether the user should be allowed to select multiple items",

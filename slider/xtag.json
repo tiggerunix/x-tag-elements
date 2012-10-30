@@ -2,10 +2,11 @@
 	"name": "Slider Input Element",
 	"tagName": "x-slider",
 	"author": "Arron Schaar",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "An enchanced version of the HTML5 range input.",
 	"images": [],	
 	"categories": ["structural"],
+	"demo": "demo",
 	"compatibility": {
 		"firefox": 5,
 		"chrome": 4,

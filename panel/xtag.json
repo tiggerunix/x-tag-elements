@@ -1,10 +1,11 @@
 {	
 	"name": "Panel",
 	"tagName": "x-panel",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"author": "Daniel Buchner",
 	"description": "A panel is a block element that has the ability to load data asynchronously when a src attribute is set (same-origin policy restricted).",
-	"images": [],	
+	"images": [],
+	"demo": "demo",
 	"categories": ["structural"],
 	"compatibility": {	
 		"firefox": 5,
@@ -13,5 +14,23 @@
 		"opera": 12,
 		"android": 2.1,
 		"ios": 4
+	},
+	"documentation":{
+		"description": "",
+		"attributes": { 
+			"src": "The source of the content to display in the panel"
+		},
+		"events": {
+			
+		},
+		"methods": {
+
+		}, 
+		"getters": {
+			
+		},
+		"setters": {
+			
+		}
 	}
 }
