@@ -1,7 +1,7 @@
 {	
 	"name": "Date Time Picker",
 	"tagName": "x-date-time-picker",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"author": "Arron Schaar",
 	"description": "Date, Time and DateTime picker.",
 	"images": [],	

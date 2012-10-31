@@ -1,7 +1,7 @@
 {	
 	"name": "Toast Message",
 	"tagName": "x-toast",
-	"version": "0.0.1",
+	"version": "0.0.3",
 	"author": "Karthik Viswanathan",
 	"description": "A small popup message, generally triggered by an event, that disappears after a few seconds.",
 	"images": [],	
