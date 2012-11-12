@@ -1,7 +1,7 @@
 {	
 	"name": "Accordion",
 	"tagName": "x-accordion",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"author": "Daniel Buchner",
 	"description": "An accordion is a collection of panels containing content separated by toggler elements.",
 	"images": [],	
@@ -18,23 +18,22 @@
 	},
 	"documentation": {
 		"attributes": {
-
+			"selected-index": "Gets/sets the current section that is opened. This overrides any headers that are marked as selected."
 		},
 		"events": {
 			"seleted": "Fires each time an item is selected."
 		}, 
 		"methods": {
-			"getSelectedIndex": "Returns the index of the selected item.",
 			"getSelected": "Returned the selected header element.",
 			"setSelected": "Sets the selected header element by passing a header element.",
 			"selectNext": "Selects the next section.",
 			"selectPrevious": "Selects the previous section."
 		}, 
 		"getters": {
-
+			"selectedIndex": "Gets the selected headers index."
 		}, 
 		"setters": {
-
+			"selectedIndex": "Sets the current header by index and updates the selected-index attribute."
 		}
 	}
 }
