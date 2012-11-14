@@ -1,9 +1,9 @@
 {	
 	"name": "Action Bar",
 	"tagName": "x-actionbar",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"author": "Daniel Buchner",
-	"description": "An iconified navigation that fire user-defined actions.",
+	"description": "An iconified navigation that fires user-defined actions.",
 	"images": [],	
 	"categories": ["navigation"],
 	"compatibility": {	
@@ -13,5 +13,38 @@
 		"opera": 12,
 		"android": 2.1,
 		"ios": 4
+	}, 
+	"documentation": {
+		"x-actionbar": {
+			"attributes": {
+				"mode": "Visual modes for an action. (full, text, icon)"
+			},
+			"getters": {
+				"group": "Gets the current group."
+			}, 
+			"setters": {
+				"group": "Sets the current group of actions to display.",
+			}, 
+			"events": {
+				"command": "Fires each time an action is clicked or pressed.  The event contains the command name of the action."
+			}
+		},
+		"x-action": {
+			"getters": {
+				"icon": "Gets the path of the image icon.",
+				"label": "Gets the action label",
+				"group": "Gets the current group"
+			},
+			"setters": {
+				"icon": "Sets an icon for an action.",
+				"label": "Sets the action label",
+				"group": "Defines the group this action belongs to. Actions can be assigned to multiple groups by separating group numbers spaces. eg.(1 2 5)"
+			}, 
+			"attributes": {				
+				"icon": "Sets an icon for an action.",
+				"label": "Sets the action label",
+				"group": "Defines the group this action belongs to."
+			}
+		}
 	}
 }
