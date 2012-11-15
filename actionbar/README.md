@@ -23,7 +23,7 @@ The actionbar allows you to create a tool bar of actions.  You can also use grou
 		label="Advanced" 
 		icon="demo/more-actions.png">
 	</x-action>
-<x-actionbar group="1">
+</x-actionbar>
 ```
 
 
@@ -41,7 +41,7 @@ The actionbar allows you to create a tool bar of actions.  You can also use grou
 		label="Refresh" 
 		icon="demo/refresh.png">
 	</x-action>
-<x-actionbar group="1">
+</x-actionbar>
 
 ## Events
 Command events are fired each time an action is clicked or pressed.
