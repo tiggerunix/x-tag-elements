@@ -1,7 +1,7 @@
 {	
 	"name": "Action Bar",
 	"tagName": "x-actionbar",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"author": "Daniel Buchner",
 	"description": "An iconified navigation that fires user-defined actions.",
 	"images": [],	
@@ -14,7 +14,7 @@
 		"android": 2.1,
 		"ios": 4
 	}, 
-	"demo":"demo",
+	"demo": "demo",
 	"documentation": {
 		"x-actionbar": {
 			"attributes": {
