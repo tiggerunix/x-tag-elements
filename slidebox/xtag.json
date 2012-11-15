@@ -13,5 +13,22 @@
 		"opera": 12,
 		"android": 2.1,
 		"ios": 4
+	}, 
+	"documentation":{
+		"attributes":{
+			"orientation":"Slide axis.  'x' or 'y'"
+		},
+		"setters":{
+			"orientation": "Sets the slide axis."
+		},
+		"methods":{
+			"slideTo":"Slides to a specific element index.",
+			"slideNext": "Slides to next element.",
+			"slidePrevious": "Slides to the previous element."
+		}, 
+		"events":{
+			"slideend":"Fires at the end of each slide transition."
+		}
+
 	}
 }

@@ -10,7 +10,7 @@
 			var slides = xtag.toArray(el.firstElementChild.children);
 			slides.forEach(function(slide){ slide.removeAttribute('selected'); });
 			slides[index || 0].setAttribute('selected', null);
-			el.firstElementChild.style[transform] = 'translate'+ (el.getAttribute('data-orientation') || 'x') + '(' + (index || 0) * (-100 / slides.length) + '%)';
+			el.firstElementChild.style[transform] = 'translate'+ (el.getAttribute('orientation') || 'x') + '(' + (index || 0) * (-100 / slides.length) + '%)';
 		},
 		init = function(toSelected){
 			var slides = this.firstElementChild;
@@ -18,7 +18,7 @@
 			
 			var	children = xtag.toArray(slides.children),
 				size = 100 / (children.length || 1),
-				orient = this.getAttribute('data-orientation') || 'x',
+				orient = this.getAttribute('orientation') || 'x',
 				style = orient == 'x' ? ['width', 'height'] : ['height', 'width'];
 			
 			xtag.skipTransition(slides, function(){
@@ -45,10 +45,15 @@
 			}
 		},
 		setters: {
-			'data-orientation': function(value){
-				this.setAttribute('data-orientation', value.toLowerCase());
+			'orientation': function(value){
+				this.setAttribute('orientation', value.toLowerCase());
 				init.call(this, true);
 			},
+		},
+		getters:{
+			'orientation': function(){
+				return this.getAttribute('orientation');
+			}
 		},
 		methods: {
 			slideTo: function(index){

@@ -25,16 +25,10 @@
 
 <body>
 
-<div id="tags" class="max-width">
+
 
 	<dl>
-	
-		<dt>Slide Box</dt>
 		<dd id="slidebox">
-			<p class="description">
-				A container that allows animated transitions between content panes. Slide Box supports horizontal and vertical transitions.
-			</p>
-			
 			<nav class="actions">				
 				<button data-action-type="slidePrevious"><- Previous Slide</button>
 				<button data-action-type="slideNext">Next Slide -></button>
@@ -42,7 +36,7 @@
 				<button data-action-type="slideOrientation">Toggle orientation</button>
 			</nav>
 			
-			<x-slidebox id="slidebox_demo" data-orientation='x'>
+			<x-slidebox id="slidebox_demo" orientation="x">
 				<x-slides>
 					<x-slide><img src="birnimal-calendar.png" /></x-slide>
 					<x-slide><img src="birnimal-graph.png" /></x-slide>
@@ -53,7 +47,7 @@
 			
 		</dd>
 	</dl>
-</div>
+
 	
 
 </body>
@@ -86,7 +80,7 @@
 					demo.slideTo(2);
 					break;
 				case 'slideOrientation':
-					demo['data-orientation'] = demo.getAttribute('data-orientation') == 'x' ? 'y' : 'x';
+					demo.orientation = demo.orientation == 'x' ? 'y' : 'x';
 					break;
 
 			}
