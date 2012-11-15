@@ -1,7 +1,7 @@
 
 ## Syntax
 
-The action bar a grouping of action that have 
+The actionbar allows you to create a tool bar of actions.  You can also use groups to show or hide actions.  Each time an action is pressed or clicked a ```command``` event is fired.
 
 ```
 <x-actionbar group="1">
