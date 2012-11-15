@@ -1,7 +1,7 @@
 {	
 	"name": "Action Bar",
 	"tagName": "x-actionbar",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"author": "Daniel Buchner",
 	"description": "An iconified navigation that fires user-defined actions.",
 	"images": [],	
@@ -23,7 +23,7 @@
 				"group": "Gets the current group."
 			}, 
 			"setters": {
-				"group": "Sets the current group of actions to display.",
+				"group": "Sets the current group of actions to display."
 			}, 
 			"events": {
 				"command": "Fires each time an action is clicked or pressed.  The event contains the command name of the action."

@@ -14,6 +14,7 @@
 		"android": 2.1,
 		"ios": 4
 	}, 
+	"demo": "demo",
 	"documentation":{
 		"attributes":{
 			"orientation":"Slide axis.  'x' or 'y'"
