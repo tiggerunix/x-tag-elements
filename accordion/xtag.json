@@ -1,7 +1,7 @@
 {	
 	"name": "Accordion",
 	"tagName": "x-accordion",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"author": "Daniel Buchner",
 	"description": "An accordion is a collection of panels containing content separated by toggler elements.",
 	"images": [],	

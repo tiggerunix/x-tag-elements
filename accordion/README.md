@@ -16,18 +16,6 @@ The accordion operates by using a pairing of html header tags ```h1-h6``` with a
 </x-accordion>
 ```
 
-```
-<x-accordion selected-index="0">
-	<h2>Section 1</h2>
-	<section>
-		Hello testing section 1
-	</section>
-	<h2>Section 2</h2>
-	<section>
-		Hello testing section 2
-	</section>
-</x-accordion>
-```
 
 ### Live Example
 <x-accordion>
@@ -45,7 +33,8 @@ The accordion operates by using a pairing of html header tags ```h1-h6``` with a
 When the active section is changed x-accordion will fire a ```selected``` event.
 
 ```
-	document.getElementsByNames('x-accordion')[0].addEventListener('selected', function(e){
+	var accordion = document.getElementsByNames('x-accordion')[0];
+	accordion.addEventListener('selected', function(e){
 		// selected item changed
 	});
 
@@ -75,7 +64,7 @@ When the active section is changed x-accordion will fire a ```selected``` event.
 	var header = document.createElement('h2');
 	header.innerHTML = 'Next Section';
 	var section = document.createElement('section');
-	section.innerHTML = 'As he said this, Ahab advanced upon him with such overbearing terrors in his aspect, that Stubb involuntarily retreated.';
+	section.innerHTML = 'Some html rawrrr.';
 	accordion.appendChild(header);
 	accordion.appendChild(section);
 	

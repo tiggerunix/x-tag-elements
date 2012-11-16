@@ -47,7 +47,8 @@ The actionbar allows you to create a tool bar of actions.  You can also use grou
 Command events are fired each time an action is clicked or pressed.
 
 ```
-	document.getElementsByNames('x-actionbar')[0].addEventListener('command', function(e){
+	var actionbar = document.getElementsByNames('x-actionbar')[0];
+	actionbar.addEventListener('command', function(e){
 		var selectedCommand = e.command;
 	});
 

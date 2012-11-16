@@ -1,7 +1,7 @@
 {	
 	"name": "Action Bar",
 	"tagName": "x-actionbar",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"author": "Daniel Buchner",
 	"description": "An iconified navigation that fires user-defined actions.",
 	"images": [],	
@@ -33,17 +33,17 @@
 		"x-action": {
 			"getters": {
 				"icon": "Gets the path of the image icon.",
-				"label": "Gets the action label",
-				"group": "Gets the current group"
+				"label": "Gets the action label.",
+				"group": "Gets the current group."
 			},
 			"setters": {
 				"icon": "Sets an icon for an action.",
-				"label": "Sets the action label",
-				"group": "Defines the group this action belongs to. Actions can be assigned to multiple groups by separating group numbers spaces. eg.(1 2 5)"
+				"label": "Sets the action label.",
+				"group": "Defines the group this action belongs to. Actions can be assigned to multiple groups by separating group numbers with spaces. eg.(1 2 5)"
 			}, 
 			"attributes": {				
 				"icon": "Sets an icon for an action.",
-				"label": "Sets the action label",
+				"label": "Sets the action label.",
 				"group": "Defines the group this action belongs to."
 			}
 		}
