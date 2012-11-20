@@ -15,7 +15,7 @@
 
 	window.addEventListener('keyup', function(event){
 		if(event.keyCode == 27) xtag.query(document, 'x-modal').forEach(function(modal){
-			if (!modal.getAttribute('data-modal-hidden')) xtag.fireEvent(modal, 'modalhide');
+			if (modal.getAttribute('hide') == null) xtag.fireEvent(modal, 'modalhide');
 		});
 	});
 
@@ -40,7 +40,7 @@
 		},
 		events: {
 			'modalhide:preventable': function(){
-				this.setAttribute('data-modal-hidden', true);
+				this.setAttribute('hide', '');
 			}
 		}
 	});
