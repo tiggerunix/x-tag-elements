@@ -1,22 +1,25 @@
 (function(window, document, undefined) {
-	var onTextAttr = 'data-on-text';
-	var offTextAttr = 'data-off-text';
+	var onTextAttr = 'on-text';
+	var offTextAttr = 'off-text';
 
 	var buttonSelector = '.x-toggle-switch-button';
 	var styleOffAttr = 'data-off';
 
 	xtag.register('x-toggle-switch', {
-		onInsert: function() {
-			if (xtag.query(this, buttonSelector).length === 0) {
-				// add button HTML dynamically
-				this.innerHTML +=
-					'<div class="' + buttonSelector.substring(1) + '">' +
-						'<span>' + this.onText + '</span>' +
-						'<div></div>' +
-					'</div>';
+		onCreate: function(){
+			this.innerHTML = '<label>'+ (this.getAttribute('label') || this.getAttribute('input-name')) +'</label>' +
+						'<div class="' + buttonSelector.substring(1) + '" ' + 
+						onTextAttr + '="' +this.onText + '" ' + 
+						offTextAttr + '="' +this.offText + '" >' + 
+						'<input type="hidden" name="'+ this.name +
+						'" value="on" /></div>';
+		},
+		onInsert: function(){
+			var value = this.getAttribute('initial-value'); //get initial value
+			if (value && value == 'off'){
+				this.setOff();
 			}
 		},
-
 		events: {
 			'click:delegate(.x-toggle-switch-button)': function(event, toggleSwitch) {
 				event.preventDefault();
@@ -52,46 +55,70 @@
 		},
 
 		setters: {
-			onText: function(onText) {
-				this.setAttribute(onTextAttr, onText);
+			'onText:attribute(on-text)': function(onText) {
+				this.querySelector(buttonSelector).setAttribute(onTextAttr, onText);
 			},
 
-			offText: function(offText) {
-				this.setAttribute(offTextAttr, offText);
+			'offText:attribute(off-text)': function(offText) {
+				this.querySelector(buttonSelector).setAttribute(offTextAttr, offText);
+			}, 
+
+			'inputName:attribute(input-name)': function(name){
+				this.querySelector('input').name = name;
+				this.querySelector('label').textContent = this.getAttribute('label') || name;
+			}, 
+
+			'label:attribute()': function(label){
+				this.querySelector('label').textContent = label;
 			}
 		},
 
 		getters: {
-			onText: function(onText) {
+			onText: function() {
 				return this.getAttribute(onTextAttr) || 'on';
 			},
 
-			offText: function(offText) {
+			offText: function() {
 				return this.getAttribute(offTextAttr) || 'off';
+			}, 
+
+			inputName: function(){
+				return this.querySelector('input').name;
+			},
+
+			label: function(){
+				return this.querySelector('label').textContent;
 			}
+
 		},
 
 		methods: {
 			/**
 			 * Toggles this toggle switch, triggering an 'on' or 'off' event.
 			 */
-			toggle: function(selectedItem) {
-				var button = xtag.query(this, buttonSelector)[0];
-				var buttonText = xtag.query(button, 'span')[0];
-
+			toggle: function() {
+				var button = this.querySelector(buttonSelector);
 				if (button.getAttribute(styleOffAttr)) {
-					// button is off; turn it on
-					button.removeAttribute(styleOffAttr);
-					buttonText.textContent = this.onText;
-
-					xtag.fireEvent(this, 'on');
+					this.setOn();
+					return 'on';
 				} else {
-					// button is on; turn it off
-					button.setAttribute(styleOffAttr, 'true');
-					buttonText.textContent = this.offText;
-
-					xtag.fireEvent(this, 'off');
+					this.setOff();
+					return 'off';
 				}
+			}, 
+
+			setOn: function(){
+				var button = this.querySelector(buttonSelector);
+				button.removeAttribute(styleOffAttr);
+				this.querySelector('input').value = 'on';
+				xtag.fireEvent(this, 'on');
+			}, 
+
+			setOff: function(){
+				var button = this.querySelector(buttonSelector);
+				this.querySelector('input').value = 'off';
+				button.setAttribute(styleOffAttr, 'true');
+				xtag.fireEvent(this, 'off');
 			}
 		}
 	});

@@ -15,22 +15,27 @@
 				padding-top: 50px;
 				padding-left: 150px;
 			}
+			x-toggle-switch{
+				width: 180px;
+			}
+			x-toggle-switch[input-name="wireless"]{
+				width: 210px;
+			}
+
 		</style>
 	</head>
 
 	<body>
-		<x-toggle-switch>
-			<label>Wireless</label>
-		</x-toggle-switch>
 
-		
 
-		<script id="next-toggle-html" type="text/template">
-			<label>Notification</label>
-		</script>
+		<x-toggle-switch input-name="wireless" on-text="enabled" off-text="disabled"></x-toggle-switch>
 
-		<script>
+		<x-toggle-switch input-name="on-page-alerts" label="Alerts" initial-value="off"></x-toggle-switch>
+
+
+		<script type="text/javascript">
 			document.addEventListener('DOMComponentsLoaded', function() {
+				
 				var toggleSwitch = document.querySelector('x-toggle-switch');
 				toggleSwitch.addEventListener('on', function(event) {
 					console.log(event);
@@ -40,11 +45,15 @@
 					console.log(event);
 				});
 
+				
+				
 				var nextToggleSwitch = document.createElement('x-toggle-switch');
-				nextToggleSwitch.innerHTML = document.getElementById('next-toggle-html').innerHTML;
+				nextToggleSwitch.inputName = "notifications";
 				nextToggleSwitch.onText = 'yes';
 				nextToggleSwitch.offText = 'no';
+				nextToggleSwitch.setOff();
 				document.body.appendChild(nextToggleSwitch);
+				
 			});
 		</script>
 	</body>
