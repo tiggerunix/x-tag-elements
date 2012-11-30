@@ -1,7 +1,7 @@
 {	
 	"name": "Toggle Switch",
 	"tagName": "x-toggle-switch",
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"author": "Karthik Viswanathan, Arron Schaar",
 	"description": "An on-off switch that can be toggled with a click.",
 	"images": [],	
