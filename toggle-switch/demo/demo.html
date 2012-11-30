@@ -32,29 +32,5 @@
 
 		<x-toggle-switch input-name="on-page-alerts" label="Alerts" initial-value="off"></x-toggle-switch>
 
-
-		<script type="text/javascript">
-			document.addEventListener('DOMComponentsLoaded', function() {
-				
-				var toggleSwitch = document.querySelector('x-toggle-switch');
-				toggleSwitch.addEventListener('on', function(event) {
-					console.log(event);
-				});
-
-				toggleSwitch.addEventListener('off', function(event) {
-					console.log(event);
-				});
-
-				
-				
-				var nextToggleSwitch = document.createElement('x-toggle-switch');
-				nextToggleSwitch.inputName = "notifications";
-				nextToggleSwitch.onText = 'yes';
-				nextToggleSwitch.offText = 'no';
-				nextToggleSwitch.setOff();
-				document.body.appendChild(nextToggleSwitch);
-				
-			});
-		</script>
 	</body>
 </html>
