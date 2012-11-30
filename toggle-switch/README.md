@@ -2,12 +2,12 @@
 ## Syntax
 
 ```
-<x-toggle-switch input-name="turbo"></x-modal>
+<x-toggle-switch input-name="turbo"></x-x-toggle-switch>
 ```
 
 ## Live Example
 
-<x-toggle-switch input-name="turbo"></x-modal>
+<x-toggle-switch input-name="turbo"></x-x-toggle-switch>
 
 
 ## Events

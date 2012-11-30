@@ -1,12 +1,12 @@
 {	
 	"name": "Modal",
 	"tagName": "x-modal",
-	"version": "0.0.4",	
+	"version": "0.0.5",	
 	"author": "Daniel Buchner, Arron Schaar",
 	"description": "The modal element can be used to show notices or secondary content above the z-level of the page.",
 	"images": [],	
 	"categories": ["structural"],
-	"demo": "demo",
+	"demo": "demo/demo.html",
 	"compatibility": {	
 		"firefox": 5,
 		"chrome": 4,
