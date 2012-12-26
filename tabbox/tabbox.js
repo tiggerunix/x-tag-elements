@@ -1,55 +1,64 @@
+(function(){
+
+function selectTab(idx){
+	var panels = xtag.query(this, 'x-tabpanels > x-tabpanel');
+	xtag.query(this, 'x-tab').forEach(function(el,i,array){
+		if(el == array[idx]){
+			el.setAttribute('selected', null);
+			panels[idx].setAttribute('selected', null);
+			xtag.fireEvent(el, 'selected');
+		} else{
+			el.removeAttribute('selected');
+			panels[i].removeAttribute('selected');
+		}
+	});
+}
 
 xtag.register('x-tabbox', {
 	events: {
-		'click:touch:delegate(x-tab)': function(event){
-			this.selectTab();
+		'click:touch:delegate(x-tab)': function(event, element){
+			var selectIdx = xtag.toArray(this.parentNode.children).indexOf(this);
+			selectTab.call(element, selectIdx);
 		},
-		'keydown:delegate(x-tab)': function(event){
+		'keydown:delegate(x-tab)': function(event, element){
+			var selectIdx = xtag.toArray(this.parentNode.children).indexOf(this);
 			switch(event.keyCode) {
-				case 13: this.selectTab(); break;
-				case 37: this.parentNode.previousTab(); break;
-				case 39: this.parentNode.nextTab(); break;
+				case 13: selectTab.call(element,selectIdx); break;
+				case 37: element.previousTab(); break;
+				case 39: element.nextTab(); break;
 			}
 		}
-	}
-});
-
-xtag.register('x-tabs', {
+	},
 	methods: {
+		setSelectedIndex: function(value){
+			selectTab(value);
+		},
 		getSelectedIndex: function(){
-			var tabs = xtag.query(this, 'x-tab');
+			var tabs = xtag.query(this.firstElementChild, 'x-tab');
 			return tabs.indexOf(this.getSelectedTab());
 		},
 		getSelectedTab: function(){
-			return xtag.query(this, 'x-tab[selected]')[0];
+			return xtag.query(this.firstElementChild, 'x-tab[selected]')[0];
 		},
 		nextTab: function(){
-			var tab = this.getSelectedTab();
-			if (tab) (tab.nextElementSibling || this.firstElementChild).selectTab();
+			var idx = this.getSelectedIndex() + 1;
+			if(this.firstElementChild.children.length -1 < idx ) selectTab.call(this,0);
+			else selectTab.call(this,idx);
 		},
-		previousTab: function(){
-			var tab = this.getSelectedTab();
-			if (tab) (tab.previousElementSibling || this.lastElementChild).selectTab();
+		previousTab: function(){			
+			var idx = this.getSelectedIndex() - 1;
+			if(idx < 0) selectTab.call(this,this.firstElementChild.children.length -1)
+			else  selectTab.call(this,idx);
 		}
 	}
 });
 
+xtag.register('x-tabs', {});
 
 xtag.register('x-tab', {
 	onCreate: function(){
 		this.setAttribute('tabindex', 0);
-	},
-	methods: {
-		selectTab: function(){
-			this.focus();
-			var tabs = xtag.query(this.parentNode, 'x-tab'),
-				index = tabs.indexOf(this);
-			tabs.forEach(function(el){
-				el == this ? el.setAttribute('selected', null) : el.removeAttribute('selected');
-			}, this);
-			xtag.query(this.parentNode.parentNode, 'x-tabpanels > *').forEach(function(el, i, array){
-				el == array[index] ? el.setAttribute('selected', null) : el.removeAttribute('selected');
-			});
-		}
 	}
 });
+
+})();
