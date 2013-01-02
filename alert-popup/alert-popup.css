@@ -10,7 +10,7 @@ x-alert {
 	display: none;
 }
 
-x-alert[data-active] {
+x-alert[active] {
 	/* flex box container to center inner elements */
 	display: -webkit-box;
 	display:    -moz-box;
@@ -61,12 +61,12 @@ x-alert[data-active] {
 	        flex-direction: column;
 }
 
-x-alert[data-location='bottom'] {
+x-alert[location='bottom'] {
 	top: auto;
 	bottom: 10px;
 }
 
-x-alert[data-location='top'] {
+x-alert[location='top'] {
 	top: 10px;
 	bottom: auto;
 }
@@ -97,7 +97,7 @@ x-alert h1, x-alert h2, x-alert h3, x-alert h4, x-alert h5, x-alert h6 {
 	display: none;
 }
 
-.x-alert-overlay[data-active] {
+.x-alert-overlay[active] {
 	display: block;
 	position: fixed;
 	top: 0;

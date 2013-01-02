@@ -1,9 +1,9 @@
 (function(window, document, undefined) {
-	var primaryTextAttr = 'data-primary-text';
-	var secondaryTextAttr = 'data-secondary-text';
-	var locationAttr = 'data-location';
+	var primaryTextAttr = 'primary-text';
+	var secondaryTextAttr = 'secondary-text';
+	var locationAttr = 'location';
 
-	var styleActiveAttr = 'data-active';
+	var styleActiveAttr = 'active';
 	var overlay;
 
 	xtag.register('x-alert', {

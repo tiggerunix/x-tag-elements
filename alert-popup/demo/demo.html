@@ -11,23 +11,22 @@
 	</head>
 
 	<body>
-		<x-alert data-fade-duration="500" data-secondary-text="Cancel">
-			<h3>Delete all contacts?</h3>
-			Contacts will be deleted forever!
-		</x-alert>
+
+		<button id="showPopup">Show Alert Popup</button>
 
 		<script>
 			document.addEventListener('DOMComponentsLoaded', function() {
-				var alert = document.querySelector('x-alert');
-				alert.addEventListener('hide', function(event) {
-					if (event.buttonType === 'primary') {
-						var nextAlert = document.createElement('x-alert');
-						nextAlert.innerHTML = 'Your contacts have been deleted.';
-						nextAlert.fadeDuration = 100;
-						nextAlert.location = 'top';
-						document.body.appendChild(nextAlert);
-					}
-				});
+				document.getElementById('showPopup').addEventListener('click', function(e){
+
+					console.log("hi");
+					var alert = document.createElement('x-alert');
+					alert.innerHTML = '<h3>Delete all contacts?</h3>Contacts will be deleted forever!';
+					alert.setAttribute('fade-duration', 500);
+					alert.setAttribute('secondary-text', 'Cancel');
+					alert.setAttribute('active', null);
+					e.target.parentNode.appendChild(alert);
+
+				});				
 			});
 		</script>
 	</body>
