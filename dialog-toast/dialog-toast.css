@@ -8,12 +8,12 @@ x-toast {
 	color: #eee;
 }
 
-x-toast[data-location="top"] {
+x-toast[location="top"] {
 	top: 10px;
 	bottom: auto;
 }
 
-x-toast[data-show] {
+x-toast[show] {
 	display: block;
 }
 

@@ -11,18 +11,18 @@
 	</head>
 
 	<body>
-		<x-toast data-duration="1000">This is a toast message.</x-toast>
 
-		
+		<button id="showPopup">Show Toast Message</button>
 
 		<script>
-			var toast = document.querySelector('x-toast');
-			toast.addEventListener('hide', function() {
-				var nextToast = document.createElement('x-toast');
-				nextToast.innerHTML = 'This is the next toast message.';
-				nextToast.duration = 2000;
-				nextToast.location = 'top';
-				document.body.appendChild(nextToast);
+			document.addEventListener('DOMComponentsLoaded', function() {
+				document.getElementById('showPopup').addEventListener('click', function(e){
+					var toast = document.createElement('x-toast');
+					toast.innerHTML = 'This is the next toast message.';
+					toast.duration = 2000;
+					toast.location = 'top';
+					e.target.parentNode.appendChild(toast);
+				});				
 			});
 		</script>
 	</body>
