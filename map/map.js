@@ -23,10 +23,10 @@
 	var setTileLayer = function(){
 		if (this.xtag.tilelayer) this.xtag.map.removeLayer(this.xtag.tilelayer);
 		this.xtag.tilelayer = new L.TileLayer(
-			'http://{s}.tile.cloudmade.com/' + this.getAttribute('data-key') + '/' + 
-			(this.getAttribute('data-tile-set') || 997) + 
+			'http://{s}.tile.cloudmade.com/' + this.getAttribute('key') + '/' + 
+			(this.getAttribute('tile-set') || 997) + 
 			'/256/{z}/{x}/{y}.png', 
-			this.getAttribute('data-tile-options') || {}
+			this.getAttribute('tile-options') || {}
 		);
 		this.xtag.map.addLayer(this.xtag.tilelayer);
 		setLocation(this);
@@ -48,27 +48,27 @@
 		},
 		getters: {
 			'tileSet': function(){
-				return this.getAttribute('data-tile-set') || 997;
+				return this.getAttribute('tile-set') || 997;
 			},
 			'zoom': function(){
-				var zoom = this.getAttribute('data-zoom');
+				var zoom = this.getAttribute('zoom');
 				return Number(zoom == null ? 13 : zoom);
 			},
 			'location': function(){
-				return this.getAttribute('data-location') || '37.3880, -122.0829';
+				return this.getAttribute('location') || '37.3880, -122.0829';
 			}
 		},
 		setters: {
 			'tileSet': function(value){
-				this.setAttribute('data-tile-set', value);
+				this.setAttribute('tile-set', value);
 				setTileLayer.call(this);
 			},
 			'zoom': function(value){
-				this.setAttribute('data-zoom', value);
+				this.setAttribute('zoom', value);
 				this.xtag.map.setZoom(this.zoom);
 			},
 			'location': function(value){
-				this.setAttribute('data-location', value);
+				this.setAttribute('location', value);
 				setLocation(this);
 			}
 		}
