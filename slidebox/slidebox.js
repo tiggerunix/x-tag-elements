@@ -47,7 +47,7 @@
 			'orientation': function(value){
 				this.setAttribute('orientation', value.toLowerCase());
 				init.call(this, true);
-			},
+			}
 		},
 		getters:{
 			'orientation': function(){
