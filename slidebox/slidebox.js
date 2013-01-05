@@ -52,6 +52,15 @@
 		getters:{
 			'orientation': function(){
 				return this.getAttribute('orientation');
+			},
+			'getSelectedIndex': function(){
+				var slides = this.querySelectorAll('x-slide');
+				for (var i = 0;i<slides.length;i++){
+					if (slides[i].hasAttribute("selected")){
+						return i;
+					}
+				}
+				return -1;
 			}
 		},
 		methods: {
