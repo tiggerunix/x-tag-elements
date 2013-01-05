@@ -1,4 +1,3 @@
-
 (function(){
 
 	var transform = xtag.prefix.js + 'Transform',
@@ -41,7 +40,7 @@
 		onInsert: init,		
 		events:{
 			'transitionend': function(e){
-				if (e.target == this) xtag.fireEvent(this, 'slideend');
+				if (e.target == this.firstElementChild) xtag.fireEvent(this, 'slideend');
 			}
 		},
 		setters: {
